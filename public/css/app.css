@@ -1,0 +1,2986 @@
+/* =========================================================
+   SIR SHAHBAZ'S ATLAS ACADEMY — STUDENT MANAGEMENT SYSTEM
+   Design tokens + component styles
+========================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Inter:wght@400;500;600;700;800&display=swap');
+
+:root {
+    /* ---- Brand ---- */
+    --ink: #0B1220;              /* near-black, primary text */
+    --navy-950: #0A1526;         /* sidebar / header base */
+    --navy-900: #0F1F35;
+    --navy-800: #16304E;
+    --gold-600: #A9812F;         /* brass accent — used sparingly */
+    --gold-500: #C79A3F;
+    --gold-100: #FBF3E1;
+
+    /* ---- Neutrals ---- */
+    --surface: #F6F7FA;          /* page background */
+    --surface-raised: #FFFFFF;   /* cards */
+    --surface-muted: #FAFBFC;
+    --border: #E4E7EC;
+    --border-strong: #D6DAE1;
+    --text-primary: #101828;
+    --text-secondary: #4B5568;
+    --text-tertiary: #8A93A3;
+    --text-inverse: #F4F6FA;
+
+    /* ---- Status ---- */
+    --success-bg: #E7F5EE;
+    --success-text: #146C43;
+    --success-border: #BFE4D2;
+    --warning-bg: #FDF2E3;
+    --warning-text: #9A5B0E;
+    --warning-border: #F3DAAF;
+    --danger-bg: #FBEAEA;
+    --danger-text: #A32626;
+    --danger-border: #F0C9C9;
+    --info-bg: #EAF1FB;
+    --info-text: #1D4E89;
+    --info-border: #C9DBF2;
+
+    /* ---- Elevation ---- */
+    --shadow-xs: 0 1px 2px rgba(16, 24, 40, 0.04);
+    --shadow-sm: 0 2px 6px rgba(16, 24, 40, 0.05);
+    --shadow-md: 0 8px 24px rgba(16, 24, 40, 0.08);
+    --shadow-lg: 0 16px 40px rgba(16, 24, 40, 0.12);
+
+    /* ---- Radius ---- */
+    --radius-sm: 7px;
+    --radius-md: 10px;
+    --radius-lg: 14px;
+    --radius-pill: 999px;
+
+    /* ---- Type ---- */
+    --font-display: 'Playfair Display', Georgia, 'Times New Roman', serif;
+    --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-body);
+    background: var(--surface);
+    color: var(--text-primary);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+}
+
+
+/* =========================================================
+   MAIN LAYOUT
+========================================================= */
+
+.app-layout {
+    display: flex;
+    min-height: 100vh;
+}
+
+
+/* =========================================================
+   SIDEBAR
+========================================================= */
+
+.sidebar {
+    width: 264px;
+    height: 100vh;
+    min-height: 100vh;
+    background: linear-gradient(180deg, var(--navy-950) 0%, #0D1A2E 100%);
+    color: var(--text-inverse);
+    position: fixed;
+    left: 0;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    z-index: 1000;
+    border-right: 1px solid rgba(255, 255, 255, 0.04);
+    transition: transform 0.28s ease;
+}
+
+
+/* Sidebar Brand */
+
+.sidebar-brand {
+    padding: 10px 24px 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    justify-content: center;
+    align-items: center;
+     display: flex;
+
+}
+
+.sidebar-brand h2 {
+    font-family: var(--font-display);
+    font-size: 21px;
+    font-weight: 700;
+    letter-spacing: 0.2px;
+    margin-bottom: 6px;
+    color: #FFFFFF;
+}
+
+.sidebar-brand span {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+    color: var(--gold-500);
+}
+
+
+/* Sidebar Navigation */
+
+.sidebar-nav {
+    padding: 18px 12px;
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.sidebar-nav::-webkit-scrollbar {
+    width: 0;
+}
+
+
+/* Navigation Item */
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 14px;
+    margin-bottom: 3px;
+    border-radius: var(--radius-sm);
+    color: rgba(244, 246, 250, 0.68);
+    text-decoration: none;
+    font-size: 13.5px;
+    font-weight: 500;
+    letter-spacing: 0.1px;
+    transition: background 0.18s ease, color 0.18s ease;
+}
+
+.nav-item:hover {
+    background: rgba(255, 255, 255, 0.06);
+    color: #FFFFFF;
+}
+
+.nav-item.active {
+    background: rgba(199, 154, 63, 0.14);
+    color: var(--gold-500);
+    font-weight: 600;
+}
+
+.nav-icon {
+    width: 20px;
+    text-align: center;
+}
+
+
+/* =========================================================
+   SIDEBAR FOOTER
+========================================================= */
+
+.sidebar-footer {
+    flex-shrink: 0;
+    margin-top: auto;
+    padding: 14px;
+    border-top: 1px solid rgba(255, 255, 255, 0.07);
+    font-size: 12px;
+    color: var(--text-tertiary);
+}
+
+
+/* =========================================================
+   USER ACCOUNT CARD
+========================================================= */
+
+.sidebar-account {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    padding: 10px;
+    margin-bottom: 9px;
+    border-radius: var(--radius-md);
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    transition: background 0.2s ease;
+}
+
+.sidebar-account:hover {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+
+/* Avatar */
+
+.account-avatar {
+    width: 34px;
+    height: 34px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-sm);
+    background: linear-gradient(135deg, var(--gold-500), var(--gold-600));
+    color: var(--navy-950);
+    font-size: 13px;
+    font-weight: 800;
+}
+
+
+/* User Details */
+
+.account-details {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.account-details strong {
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: 700;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.account-details span {
+    color: rgba(255, 255, 255, 0.45);
+    font-size: 10px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+
+/* =========================================================
+   LOGOUT BUTTON
+========================================================= */
+
+.sidebar-footer form {
+    margin: 0;
+}
+
+.sidebar-logout {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 9px 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-sm);
+    background: transparent;
+    color: rgba(255, 255, 255, 0.6);
+    font-family: inherit;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.2px;
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.sidebar-logout:hover {
+    background: rgba(255, 255, 255, 0.08);
+    color: #ffffff;
+    border-color: rgba(255, 255, 255, 0.16);
+}
+
+.logout-icon {
+    font-size: 15px;
+    line-height: 1;
+}
+
+
+/* =========================================================
+   MAIN AREA
+========================================================= */
+
+.main-area {
+    margin-left: 264px;
+    width: calc(100% - 264px);
+    min-height: 100vh;
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.top-header {
+    background: var(--surface-raised);
+    padding: 24px 36px;
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+
+/* =========================================================
+   MOBILE NAV TOGGLE + OVERLAY
+========================================================= */
+
+.mobile-menu-toggle {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    background: var(--surface-raised);
+    color: var(--text-primary);
+    font-size: 18px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.mobile-menu-toggle:hover {
+    background: var(--surface-muted);
+}
+
+.sidebar-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(10, 21, 38, 0.5);
+    z-index: 999;
+    opacity: 0;
+    transition: opacity 0.25s ease;
+}
+
+.sidebar-overlay.active {
+    display: block;
+    opacity: 1;
+}
+
+.academy-heading h1 {
+    font-family: var(--font-display);
+    font-size: 25px;
+    font-weight: 700;
+    color: var(--text-primary);
+    letter-spacing: -0.2px;
+}
+
+.academy-heading p {
+    margin-top: 5px;
+    color: var(--text-secondary);
+    font-size: 13.5px;
+}
+
+
+/* =========================================================
+   ATLAS ACADEMY HEADER
+========================================================= */
+
+.academy-header {
+    width: 100%;
+    padding: 8px 25px 0;
+    background: var(--surface-raised);
+}
+
+.header-content {
+    height: 90px;
+    display: flex;
+    align-items: center;
+}
+
+.academy-name {
+    line-height: 1;
+}
+
+
+/* Sir Shahbaz */
+
+.sir-shahbaz {
+    font-family: 'Playfair Display', 'Brush Script MT', 'Segoe Script', cursive;
+    font-style: italic;
+    font-size: 25px;
+    font-weight: 700;
+    letter-spacing: 0.2px;
+    margin-bottom: 3px;
+    color: var(--navy-900);
+}
+
+
+/* Atlas Academy */
+
+.atlas {
+    font-family: var(--font-body);
+    font-size: 30px;
+    font-weight: 800;
+    letter-spacing: -1.2px;
+    color: var(--ink);
+}
+
+
+/* Tagline */
+
+.tagline {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    margin-top: 5px;
+    color: var(--gold-600);
+}
+
+
+/* Bottom Line */
+
+.bottom-line {
+    border-top: 1px solid var(--border-strong);
+    margin-top: 3px;
+    padding-top: 2px;
+    text-align: center;
+    font-size: 8px;
+    white-space: nowrap;
+    overflow: hidden;
+    color: var(--text-tertiary);
+}
+
+
+/* =========================================================
+   ACADEMY TOP HEADER
+========================================================= */
+
+.academy-top-header {
+    width: 100%;
+    min-height: 110px;
+    display: flex;
+    align-items: center;
+    padding: 16px 34px 12px;
+    background: linear-gradient(120deg, var(--navy-950) 0%, var(--navy-800) 100%);
+    border-bottom: 3px solid var(--gold-500);
+}
+
+.academy-heading {
+    line-height: 1;
+}
+
+.academy-sir {
+    margin-bottom: 4px;
+    font-family: 'Monotype Corsiva';
+    font-style: italic;
+    color: var(--gold-500);
+    font-size: 22px;
+    font-weight: 600;
+}
+
+.academy-title {
+    color: #ffffff;
+    font-family: var(--font-body);
+    font-size: 29px;
+    font-weight: 800;
+    letter-spacing: -1.2px;
+}
+
+.academy-tagline {
+    margin-top: 6px;
+    color: rgba(255, 255, 255, 0.65);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.9px;
+    text-transform: uppercase;
+}
+
+
+/* =========================================================
+   PAGE CONTENT
+========================================================= */
+
+.page-content {
+    padding: 36px;
+}
+
+.alert-success {
+    background: var(--success-bg);
+    color: var(--success-text);
+    border: 1px solid var(--success-border);
+    padding: 13px 16px;
+    border-radius: var(--radius-sm);
+    margin-bottom: 20px;
+    font-size: 13.5px;
+    font-weight: 500;
+}
+
+
+/* =========================================================
+   PAGE HEADER
+========================================================= */
+
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 28px;
+}
+
+.page-title {
+    font-family: var(--font-display);
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 6px;
+    letter-spacing: -0.2px;
+}
+
+.page-subtitle {
+    color: var(--text-secondary);
+    font-size: 13.5px;
+}
+
+.page-header-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+
+/* =========================================================
+   PRIMARY BUTTON
+========================================================= */
+
+.primary-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    background: var(--navy-950);
+    color: white;
+    text-decoration: none;
+    padding: 11px 19px;
+    border-radius: var(--radius-sm);
+    font-size: 13.5px;
+    font-weight: 600;
+    letter-spacing: 0.1px;
+    border: none;
+    cursor: pointer;
+    box-shadow: var(--shadow-xs);
+    transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.primary-btn:hover {
+    background: var(--navy-800);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-sm);
+}
+
+
+/* =========================================================
+   STATISTICS
+========================================================= */
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+    margin-bottom: 26px;
+}
+
+.stat-card {
+    background: var(--surface-raised);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 21px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: var(--shadow-sm);
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.stat-card:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-1px);
+}
+
+.stat-content p {
+    color: var(--text-secondary);
+    font-size: 12.5px;
+    font-weight: 500;
+    margin-bottom: 8px;
+}
+
+.stat-content h2 {
+    font-family: var(--font-display);
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.stat-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: var(--radius-md);
+    background: var(--gold-100);
+    color: var(--gold-600);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+
+/* =========================================================
+   CONTENT CARD
+========================================================= */
+
+.content-card {
+    background: var(--surface-raised);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    overflow: hidden;
+}
+
+.card-header {
+    padding: 22px 24px;
+    border-bottom: 1px solid var(--border);
+}
+
+.card-header h2 {
+    font-size: 16.5px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+}
+
+.card-header p {
+    color: var(--text-secondary);
+    font-size: 12.5px;
+}
+
+
+/* =========================================================
+   TABLE
+========================================================= */
+
+.table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.premium-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.premium-table thead {
+    background: var(--surface-muted);
+}
+
+.premium-table th {
+    text-align: left;
+    padding: 14px 20px;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--text-tertiary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-bottom: 1px solid var(--border);
+}
+
+.premium-table td {
+    padding: 16px 20px;
+    font-size: 13px;
+    color: var(--text-secondary);
+    border-bottom: 1px solid var(--surface);
+    white-space: nowrap;
+}
+
+.premium-table tbody tr {
+    transition: background 0.15s ease;
+}
+
+.premium-table tbody tr:hover {
+    background: var(--surface-muted);
+}
+
+.premium-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+
+/* =========================================================
+   STUDENT
+========================================================= */
+
+.student-info {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+}
+
+.student-avatar {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: var(--navy-950);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 13px;
+    flex-shrink: 0;
+}
+
+.student-info strong {
+    display: block;
+    color: var(--text-primary);
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.student-info span {
+    display: block;
+    color: var(--text-tertiary);
+    font-size: 11px;
+    margin-top: 3px;
+}
+
+
+/* =========================================================
+   CLASS
+========================================================= */
+
+.class-badge {
+    display: inline-block;
+    padding: 5px 10px;
+    background: var(--surface-muted);
+    border: 1px solid var(--border);
+    color: var(--text-secondary);
+    border-radius: var(--radius-sm);
+    font-size: 11.5px;
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   STATUS
+========================================================= */
+
+.status-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 5px 11px;
+    border-radius: var(--radius-pill);
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: 0.2px;
+}
+
+.status-new {
+    background: var(--warning-bg);
+    color: var(--warning-text);
+    border: 1px solid var(--warning-border);
+}
+
+.status-contacted {
+    background: var(--info-bg);
+    color: var(--info-text);
+    border: 1px solid var(--info-border);
+}
+
+.status-joined {
+    background: var(--success-bg);
+    color: var(--success-text);
+    border: 1px solid var(--success-border);
+}
+
+.status-not-interested {
+    background: var(--danger-bg);
+    color: var(--danger-text);
+    border: 1px solid var(--danger-border);
+}
+
+
+/* =========================================================
+   ACTION BUTTONS
+========================================================= */
+
+.action-buttons {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.action-buttons form {
+    margin: 0;
+}
+
+.action-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px 10px;
+    border-radius: var(--radius-sm);
+    font-size: 11px;
+    font-weight: 600;
+    text-decoration: none;
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: opacity 0.2s ease, border-color 0.2s ease;
+}
+
+.view-btn {
+    background: var(--surface-muted);
+    color: var(--text-secondary);
+    border-color: var(--border);
+}
+
+.edit-btn {
+    background: var(--info-bg);
+    color: var(--info-text);
+    border-color: var(--info-border);
+}
+
+.delete-btn {
+    background: var(--danger-bg);
+    color: var(--danger-text);
+    border-color: var(--danger-border);
+}
+
+.pay-btn {
+    background: var(--success-bg);
+    color: var(--success-text);
+    border-color: var(--success-border);
+}
+
+.pay-btn:hover {
+    background: #d1f0e1;
+}
+
+.action-btn:hover {
+    opacity: 0.78;
+}
+
+
+/* =========================================================
+   EMPTY STATE
+========================================================= */
+
+.empty-state {
+    text-align: center;
+    padding: 60px 20px;
+}
+
+.empty-icon {
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    background: var(--surface-muted);
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 15px;
+    font-size: 22px;
+}
+
+.empty-state h3 {
+    color: var(--text-primary);
+    margin-bottom: 7px;
+    font-size: 15px;
+}
+
+.empty-state p {
+    color: var(--text-secondary);
+    font-size: 13px;
+    margin-bottom: 18px;
+}
+
+
+/* =========================================================
+   ENROLLED STUDENTS FILTERS
+========================================================= */
+
+.filter-card {
+    margin-bottom: 25px;
+}
+
+.filter-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    padding: 22px 24px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-group label {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-secondary);
+}
+
+.form-control {
+    width: 100%;
+    height: 44px;
+    padding: 0 13px;
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-sm);
+    background-color: var(--surface-raised);
+    color: var(--text-primary);
+    font-size: 13px;
+    font-family: inherit;
+    outline: none;
+    cursor: pointer;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-control:hover {
+    border-color: #9ca3af;
+}
+
+.form-control:focus {
+    border-color: var(--navy-900);
+    box-shadow: 0 0 0 3px rgba(15, 31, 53, 0.09);
+}
+
+
+/* =========================================================
+   ENROLLED STUDENT FORM
+========================================================= */
+
+.form-card {
+    background: var(--surface-raised);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    overflow: hidden;
+}
+
+.form-section {
+    padding: 28px 30px;
+    border-bottom: 1px solid var(--border);
+}
+
+.form-section:last-of-type {
+    border-bottom: none;
+}
+
+.form-section-header {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    margin-bottom: 25px;
+}
+
+.section-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: var(--radius-md);
+    background: var(--gold-100);
+    color: var(--gold-600);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+}
+
+.form-section-header h2 {
+    font-size: 15.5px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+}
+
+.form-section-header p {
+    font-size: 12px;
+    color: var(--text-secondary);
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 22px;
+}
+
+.form-input {
+    width: 100%;
+    height: 45px;
+    padding: 0 13px;
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-sm);
+    background: var(--surface-raised);
+    color: var(--text-primary);
+    font-size: 13px;
+    font-family: inherit;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-input::placeholder {
+    color: var(--text-tertiary);
+}
+
+.form-input:hover {
+    border-color: #9ca3af;
+}
+
+.form-input:focus {
+    border-color: var(--navy-900);
+    box-shadow: 0 0 0 3px rgba(15, 31, 53, 0.08);
+}
+
+
+/* =========================================================
+   TEXTAREA
+========================================================= */
+
+.form-textarea {
+    min-height: 45px;
+    height: 45px;
+    padding: 12px 13px;
+    resize: vertical;
+    font-family: inherit;
+}
+
+
+/* =========================================================
+   FEE INPUT
+========================================================= */
+
+.input-with-prefix {
+    display: flex;
+    align-items: center;
+}
+
+.input-with-prefix > span {
+    height: 45px;
+    padding: 0 13px;
+    display: flex;
+    align-items: center;
+    background: var(--surface-muted);
+    border: 1px solid var(--border-strong);
+    border-right: none;
+    border-radius: var(--radius-sm) 0 0 var(--radius-sm);
+    color: var(--text-secondary);
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.input-with-prefix .form-input {
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+}
+
+
+/* =========================================================
+   FEE STATUS INFORMATION
+========================================================= */
+
+.fee-status-info {
+    background: var(--warning-bg);
+    border: 1px solid var(--warning-border);
+    border-radius: var(--radius-md);
+    padding: 17px 18px;
+}
+
+.fee-status-badge {
+    display: inline-flex;
+    padding: 5px 11px;
+    border-radius: var(--radius-pill);
+    background: #FBE4C4;
+    color: var(--warning-text);
+    font-size: 10.5px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.fee-status-badge.paid {
+    background: var(--success-bg);
+    color: var(--success-text);
+}
+
+.fee-status-info p {
+    color: var(--text-primary);
+    font-size: 12px;
+    margin-bottom: 5px;
+}
+
+.fee-status-info small {
+    color: var(--text-secondary);
+    font-size: 11px;
+}
+
+
+/* =========================================================
+   VALIDATION
+========================================================= */
+
+.form-error {
+    color: var(--danger-text);
+    font-size: 11px;
+    font-weight: 500;
+}
+
+
+/* =========================================================
+   FORM FOOTER
+========================================================= */
+
+.form-footer {
+    padding: 20px 30px;
+    background: var(--surface-muted);
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 10px;
+}
+
+.cancel-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 42px;
+    padding: 0 18px;
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-sm);
+    background: var(--surface-raised);
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    transition: background 0.2s ease;
+}
+
+.cancel-btn:hover {
+    background: var(--surface-muted);
+}
+
+.save-btn {
+    height: 42px;
+    padding: 0 20px;
+    border: none;
+    border-radius: var(--radius-sm);
+    background: var(--navy-950);
+    color: white;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: var(--shadow-xs);
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.save-btn:hover {
+    background: var(--navy-800);
+    transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   STUDENT DETAILS / VIEW PAGE
+========================================================= */
+
+.student-profile-card {
+    background: var(--surface-raised);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+}
+
+
+/* Profile Header */
+
+.student-profile-header {
+    padding: 28px 30px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    background: var(--surface-muted);
+    border-bottom: 1px solid var(--border);
+}
+
+.student-profile-header .student-avatar {
+    width: 58px;
+    height: 58px;
+    font-size: 20px;
+}
+
+.student-profile-info {
+    flex: 1;
+}
+
+.student-profile-info h2 {
+    font-family: var(--font-display);
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+}
+
+.student-profile-info p {
+    color: var(--text-secondary);
+    font-size: 12px;
+}
+
+
+/* Profile Fee Status */
+
+.profile-fee-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 7px 14px;
+    border-radius: var(--radius-pill);
+    font-size: 11.5px;
+    font-weight: 700;
+}
+
+.profile-fee-status.paid {
+    background: var(--success-bg);
+    color: var(--success-text);
+    border: 1px solid var(--success-border);
+}
+
+.profile-fee-status.defaulter {
+    background: var(--warning-bg);
+    color: var(--warning-text);
+    border: 1px solid var(--warning-border);
+}
+
+
+/* =========================================================
+   DETAILS SECTIONS
+========================================================= */
+
+.details-section {
+    padding: 28px 30px;
+    border-bottom: 1px solid var(--border);
+}
+
+.details-section-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+.details-icon {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-md);
+    background: var(--gold-100);
+    color: var(--gold-600);
+    font-size: 16px;
+}
+
+.details-section-title h3 {
+    font-size: 14.5px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 3px;
+}
+
+.details-section-title p {
+    font-size: 11px;
+    color: var(--text-secondary);
+}
+
+
+/* Details Grid */
+
+.details-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.detail-item {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.detail-label {
+    font-size: 10.5px;
+    font-weight: 700;
+    color: var(--text-tertiary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.detail-item strong {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.fee-amount {
+    font-size: 17px !important;
+    font-family: var(--font-display);
+}
+
+
+/* Detail Status */
+
+.detail-status {
+    width: fit-content;
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 12px;
+    border-radius: var(--radius-pill);
+    font-size: 10.5px;
+    font-weight: 700;
+}
+
+.detail-status.paid {
+    background: var(--success-bg);
+    color: var(--success-text);
+    border: 1px solid var(--success-border);
+}
+
+.detail-status.defaulter {
+    background: var(--warning-bg);
+    color: var(--warning-text);
+    border: 1px solid var(--warning-border);
+}
+
+
+/* =========================================================
+   STUDENT ACTIONS
+========================================================= */
+
+.student-actions {
+    padding: 22px 30px;
+    background: var(--surface-muted);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-top: 1px solid var(--border);
+}
+
+.pay-fee-btn {
+    height: 42px;
+    padding: 0 18px;
+    border: none;
+    border-radius: var(--radius-sm);
+    background: var(--success-text);
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: var(--shadow-xs);
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.pay-fee-btn:hover {
+    background: #0F5C39;
+    transform: translateY(-1px);
+}
+
+.edit-student-btn {
+    height: 42px;
+    padding: 0 18px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-sm);
+    background: var(--surface-raised);
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 600;
+    transition: background 0.2s ease;
+}
+
+.edit-student-btn:hover {
+    background: var(--surface-muted);
+}
+
+.already-paid {
+    height: 42px;
+    padding: 0 18px;
+    display: inline-flex;
+    align-items: center;
+    border-radius: var(--radius-sm);
+    background: var(--success-bg);
+    color: var(--success-text);
+    border: 1px solid var(--success-border);
+    font-size: 12px;
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   DASHBOARD
+========================================================= */
+
+.dashboard-page {
+    width: 100%;
+}
+
+
+/* Dashboard Header */
+
+.dashboard-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 30px;
+    margin-bottom: 34px;
+}
+
+.dashboard-eyebrow {
+    margin-bottom: 7px;
+    color: var(--gold-600);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.8px;
+    text-transform: uppercase;
+}
+
+.dashboard-title {
+    margin: 0;
+    font-family: var(--font-display);
+    color: var(--text-primary);
+    font-size: 29px;
+    font-weight: 700;
+    letter-spacing: -0.6px;
+}
+
+.dashboard-subtitle {
+    margin: 7px 0 0;
+    color: var(--text-secondary);
+    font-size: 13px;
+}
+
+
+/* =========================================================
+   MONTH FILTER
+========================================================= */
+
+.dashboard-filter {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 7px 8px 7px 13px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    background: var(--surface-raised);
+    box-shadow: var(--shadow-xs);
+}
+
+.filter-label {
+    color: var(--text-tertiary);
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.month-select {
+    min-width: 145px;
+    padding: 8px 30px 8px 10px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    background: var(--surface-muted);
+    color: var(--text-primary);
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 600;
+    outline: none;
+    cursor: pointer;
+}
+
+.month-select:focus {
+    border-color: var(--border-strong);
+}
+
+
+/* =========================================================
+   DASHBOARD SECTION HEADING
+========================================================= */
+
+.dashboard-section-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.dashboard-section-heading h2 {
+    margin: 0;
+    color: var(--text-primary);
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.dashboard-section-heading p {
+    margin: 4px 0 0;
+    color: var(--text-tertiary);
+    font-size: 11px;
+}
+
+
+/* =========================================================
+   DASHBOARD CARDS
+========================================================= */
+
+.dashboard-cards {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+    margin-bottom: 38px;
+}
+
+.dashboard-card {
+    position: relative;
+    min-height: 180px;
+    padding: 21px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    background: var(--surface-raised);
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.2s ease, box-shadow 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.dashboard-card:hover {
+    transform: translateY(-2px);
+    border-color: var(--border-strong);
+    box-shadow: var(--shadow-md);
+}
+
+.dashboard-card::after {
+    content: "";
+    position: absolute;
+    right: -35px;
+    bottom: -45px;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: rgba(169, 129, 47, 0.04);
+}
+
+
+/* Card Top */
+
+.dashboard-card-top {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 24px;
+}
+
+.dashboard-card-icon {
+    width: 38px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-md);
+    background: var(--surface-muted);
+    color: var(--navy-900);
+    font-size: 16px;
+    font-weight: 700;
+}
+
+
+/* Card Status */
+
+.dashboard-card-status {
+    padding: 5px 9px;
+    border-radius: var(--radius-sm);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    text-transform: uppercase;
+}
+
+.dashboard-card-status.positive {
+    background: var(--success-bg);
+    color: var(--success-text);
+}
+
+.dashboard-card-status.warning {
+    background: var(--warning-bg);
+    color: var(--warning-text);
+}
+
+.dashboard-card-status.neutral {
+    background: var(--surface-muted);
+    color: var(--text-tertiary);
+}
+
+
+/* Card Content */
+
+.dashboard-card-content {
+    position: relative;
+    z-index: 1;
+}
+
+.dashboard-card-label {
+    display: block;
+    margin-bottom: 6px;
+    color: var(--text-tertiary);
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.dashboard-card-content h3 {
+    margin: 0;
+    font-family: var(--font-display);
+    color: var(--text-primary);
+    font-size: 25px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+}
+
+.dashboard-card-content p {
+    margin: 7px 0 0;
+    color: var(--text-tertiary);
+    font-size: 10px;
+}
+
+
+/* =========================================================
+   CARD ACCENTS
+========================================================= */
+
+.fees-card {
+    border-top: 3px solid #4C8B6C;
+}
+
+.salary-card {
+    border-top: 3px solid #4A6FA0;
+}
+
+.pending-card {
+    border-top: 3px solid var(--gold-500);
+}
+
+.salary-pending-card {
+    border-top: 3px solid #B0754A;
+}
+
+.expense-card {
+    border-top: 3px solid #7B818C;
+}
+
+.profit-card {
+    border-top: 3px solid #3C7A55;
+}
+
+
+/* =========================================================
+   FEE DEFAULTERS
+========================================================= */
+
+.defaulter-heading {
+    margin-bottom: 15px;
+}
+
+.dashboard-view-all {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    color: var(--text-secondary);
+    font-size: 11px;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.dashboard-view-all span {
+    font-size: 14px;
+    transition: transform 0.2s ease;
+}
+
+.dashboard-view-all:hover {
+    color: var(--text-primary);
+}
+
+.dashboard-view-all:hover span {
+    transform: translateX(3px);
+}
+
+
+/* =========================================================
+   DASHBOARD TABLE
+========================================================= */
+
+.dashboard-table-card {
+    overflow: hidden;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    background: var(--surface-raised);
+    box-shadow: var(--shadow-sm);
+}
+
+.dashboard-table-header {
+    display: flex;
+    align-items: center;
+    padding: 17px 20px;
+    border-bottom: 1px solid var(--border);
+}
+
+.dashboard-table-header div {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+}
+
+.dashboard-table-header strong {
+    color: var(--text-primary);
+    font-size: 12px;
+}
+
+.dashboard-table-header span {
+    padding: 4px 8px;
+    border-radius: var(--radius-sm);
+    background: var(--surface-muted);
+    color: var(--text-tertiary);
+    font-size: 9px;
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   DASHBOARD EMPTY STATE
+========================================================= */
+
+.dashboard-empty {
+    padding: 48px 20px;
+    text-align: center;
+}
+
+.dashboard-empty-icon {
+    width: 42px;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 13px;
+    border-radius: 50%;
+    background: var(--gold-100);
+    color: var(--gold-600);
+    font-size: 17px;
+    font-weight: 700;
+}
+
+.dashboard-empty h3 {
+    margin: 0;
+    color: var(--text-primary);
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.dashboard-empty p {
+    margin: 5px 0 0;
+    color: var(--text-tertiary);
+    font-size: 10px;
+}
+
+
+/* =========================================================
+   FEE RECEIPT
+========================================================= */
+
+.receipt-page {
+    width: 100%;
+}
+
+.receipt-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.print-btn {
+    border: none;
+    background: var(--navy-950);
+    color: white;
+    padding: 11px 20px;
+    border-radius: var(--radius-sm);
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: var(--shadow-xs);
+    transition: opacity 0.2s ease;
+}
+
+.print-btn:hover {
+    opacity: 0.9;
+}
+
+
+/* =========================================================
+   80MM THERMAL FEE RECEIPT
+========================================================= */
+
+.fee-receipt {
+    width: 80mm;
+    max-width: 80mm;
+    margin: 0 auto;
+    padding: 8mm 5mm;
+    background: #ffffff;
+    color: var(--ink);
+    font-family: var(--font-body);
+    font-size: 12px;
+    line-height: 1.3;
+    box-sizing: border-box;
+}
+
+
+/* =========================================================
+   RECEIPT HEADER
+========================================================= */
+
+.receipt-header {
+    text-align: left;
+    padding: 0 0 6px 0;
+    margin: 0;
+    border-bottom: 1.5px solid var(--ink);
+    
+}
+
+
+/*
+   IMPORTANT:
+   Sir / Academy / Tagline
+   All same font
+   All same font-size
+   No gap between them
+*/
+
+.receipt-sir,
+.receipt-academy,
+.receipt-tagline {
+    font-family: var(--font-body);
+    font-size: 25px;
+    font-weight: 700;
+
+    margin: 0;
+    padding: 0;
+
+    line-height: 1;
+}
+
+
+/* Sir Shahbaz's */
+
+.receipt-sir {
+    font-family: 'Monotype Corsiva';
+    font-style: italic;
+    font-weight: 700;
+    
+}
+
+
+/* ATLAS ACADEMY */
+
+.receipt-academy {
+    font-size: 18px;
+    font-weight: 800;
+}
+
+
+/* Tagline */
+
+.receipt-tagline {
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    font-size: 8px;
+
+}
+
+
+/* =========================================================
+   RECEIPT TITLE
+========================================================= */
+
+.receipt-title {
+    
+    text-align: center;
+     text-decoration: underline;
+
+    margin: 9px 0 8px 0;
+    padding: 15px 0px 0px 0px;
+
+    font-size: 15px;
+    font-weight: 800;
+
+    letter-spacing: 0.5px;
+    line-height: 1.1;
+}
+
+
+/* =========================================================
+   RECEIPT META
+   Receipt No + Date
+========================================================= */
+
+.receipt-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+
+    width: 100%;
+
+    margin: 0;
+    padding: 0 0 7px 0;
+
+    border-bottom: 1px dashed var(--text-tertiary);
+}
+
+.receipt-meta div {
+    display: flex;
+    flex-direction: column;
+
+    gap: 2px;
+
+    min-width: 0;
+}
+
+.receipt-meta span {
+    font-size: 9px;
+    font-weight: 700;
+
+    text-transform: uppercase;
+    color: var(--text-secondary);
+
+    letter-spacing: 0.3px;
+}
+
+.receipt-meta strong {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--ink);
+}
+
+
+/* =========================================================
+   RECEIPT SECTIONS
+========================================================= */
+
+.receipt-section {
+    margin-top: 10px;
+    padding: 0;
+}
+
+
+/* Section heading */
+
+.receipt-section h3 {
+    margin: 0 0 7px 0;
+    padding: 0 0 4px 0;
+
+    font-size: 11px;
+    font-weight: 800;
+
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+
+    border-bottom: 1px solid var(--border-strong);
+}
+
+
+/* =========================================================
+   STUDENT INFORMATION GRID
+========================================================= */
+
+.receipt-grid {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    width: 100% !important;
+    gap: 0 !important;
+}
+
+.receipt-grid > div {
+    width: 50% !important;
+    max-width: 50% !important;
+    flex: 0 0 50% !important;
+    box-sizing: border-box !important;
+    padding: 5px 4px !important;
+    min-width: 0 !important;
+}
+
+.receipt-grid span {
+    display: block !important;
+    font-size: 10px !important;
+    font-weight: 500;
+    margin-bottom: 2px !important;
+}
+
+.receipt-grid strong {
+    display: block !important;
+    font-size: 10px !important;
+    line-height: 1.3 !important;
+    word-break: break-word !important;
+    overflow-wrap: break-word !important;
+}
+
+
+/* =========================================================
+   FEE TABLE
+========================================================= */
+
+.fee-table {
+    width: 100%;
+
+    border-collapse: collapse;
+    border-spacing: 0;
+
+    margin: 0;
+    padding: 0;
+
+    font-size: 10px;
+}
+
+
+/* Table Header */
+
+.fee-table thead th {
+    padding: 5px 4px;
+
+    background: var(--surface-muted);
+
+    border-top: 1px solid var(--ink);
+    border-bottom: 1px solid var(--ink);
+
+    font-size: 14Spx;
+    font-weight: 800;
+
+    text-transform: uppercase;
+
+    color: var(--ink);
+}
+
+
+/* First column */
+
+.fee-table th:first-child,
+.fee-table td:first-child {
+    text-align: left;
+}
+
+
+/* Amount column */
+
+.fee-table th:last-child,
+.fee-table td:last-child {
+    text-align: right;
+}
+
+
+/* Table Rows */
+
+.fee-table tbody td {
+    padding: 6px 4px;
+
+    border-bottom: 1px dashed var(--border-strong);
+
+    font-size: 10px;
+    font-weight: 600;
+}
+
+
+/* Total */
+
+.fee-table tr.fee-total td {
+    padding-top: 7px;
+    padding-bottom: 7px;
+
+    border-top: 1.5px solid var(--ink);
+    border-bottom: 1.5px solid var(--ink);
+
+    font-size: 11px;
+    font-weight: 800;
+}
+
+
+/* =========================================================
+   AMOUNT RECEIVED / BALANCE
+========================================================= */
+
+.receipt-balance {
+    width: 100%;
+    box-sizing: border-box;
+
+    margin-top: 8px;
+    padding: 7px 9px;
+
+    border-radius: 4px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    font-size: 10px;
+    font-weight: 700;
+}
+
+
+/* Warning */
+
+.receipt-balance.warning {
+    background: var(--warning-bg);
+    color: var(--warning-text);
+}
+
+
+/* Success */
+
+.receipt-balance.success {
+    background: var(--success-bg);
+    color: var(--success-text);
+}
+
+
+/* =========================================================
+   RUPEES IN WORDS
+========================================================= */
+
+.receipt-words {
+    margin-top: 9px;
+    padding: 6px 0;
+
+    border-top: 1px dashed var(--text-tertiary);
+    border-bottom: 1px dashed var(--text-tertiary);
+
+    font-size: 12px;
+    line-height: 1.4;
+}
+
+.receipt-words span {
+    font-weight: 700;
+}
+
+.receipt-words strong {
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   RECEIPT FOOTER
+========================================================= */
+
+
+.receipt-footer {
+    text-align: center;
+
+    margin-top: 10px;
+    padding-top: 7px;
+
+    border-top: 1px dashed var(--text-tertiary);
+}
+
+.receipt-footer p {
+    text-align: center;
+    align-items: center;
+    margin: 20px 0 0px 0px;
+    padding: 0;
+
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.receipt-footer span {
+    margin: 0;
+    padding: 0;
+
+    font-size: 13px;
+    color: var(--text-secondary);
+}
+
+
+/* =========================================================
+   PRINT SETTINGS
+========================================================= */
+
+@media print {
+
+    @page {
+        size: 80mm auto;
+        margin: 0;
+    }
+
+    html,
+    body {
+        width: 80mm;
+        margin: 0;
+        padding: 0;
+
+        background: #ffffff;
+    }
+
+    body {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+
+    .fee-receipt {
+        width: 80mm;
+        max-width: 80mm;
+
+        margin: 0;
+        padding: 5mm 4mm;
+
+        box-shadow: none;
+        border-radius: 0;
+    }
+
+    .receipt-header,
+    .receipt-section,
+    .receipt-meta,
+    .receipt-balance,
+    .receipt-words,
+    .receipt-footer {
+        break-inside: avoid;
+        page-break-inside: avoid;
+    }
+
+    .fee-table {
+        page-break-inside: avoid;
+    }
+
+    .fee-table tr {
+        page-break-inside: avoid;
+    }
+}
+
+
+/* =========================================================
+   SCREEN PREVIEW
+========================================================= */
+
+@media screen {
+
+    .fee-receipt {
+        box-shadow: var(--shadow-lg);
+        border-radius: 6px;
+    }
+
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 1100px) {
+    .dashboard-cards {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+
+@media (max-width: 800px) {
+    .details-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .dashboard-header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .dashboard-filter {
+        width: 100%;
+    }
+
+    .month-select {
+        flex: 1;
+    }
+}
+
+
+@media (max-width: 900px) {
+
+    /* Sidebar becomes an off-canvas drawer */
+    .sidebar {
+        width: 268px;
+        transform: translateX(-100%);
+        box-shadow: var(--shadow-lg);
+    }
+
+    .sidebar.mobile-open {
+        transform: translateX(0);
+    }
+
+    .main-area {
+        margin-left: 0;
+        width: 100%;
+    }
+
+    .mobile-menu-toggle {
+        display: inline-flex;
+    }
+
+    .top-header {
+        padding: 18px 20px;
+    }
+}
+
+
+@media (max-width: 700px) {
+
+    .page-content {
+        padding: 20px;
+    }
+
+    .page-header {
+        align-items: flex-start;
+        gap: 15px;
+        flex-direction: column;
+    }
+
+    .page-header-actions {
+        width: 100%;
+    }
+
+    .page-header-actions .primary-btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .filter-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .form-section {
+        padding: 22px 20px;
+    }
+
+    .form-footer {
+        padding: 18px 20px;
+        flex-direction: column-reverse;
+        align-items: stretch;
+    }
+
+    .form-footer .cancel-btn,
+    .form-footer .save-btn {
+        width: 100%;
+    }
+
+    .receipt-actions {
+        flex-direction: column-reverse;
+        align-items: stretch;
+        gap: 10px;
+    }
+
+    .receipt-actions .print-btn {
+        width: 100%;
+    }
+
+    .student-profile-header {
+        align-items: flex-start;
+        flex-wrap: wrap;
+    }
+
+    .profile-fee-status {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .details-section {
+        padding: 22px 20px;
+    }
+
+    .student-actions {
+        padding: 18px 20px;
+        flex-wrap: wrap;
+    }
+
+    .dashboard-cards {
+        grid-template-columns: 1fr;
+    }
+
+    body {
+        background: var(--surface);
+    }
+
+
+    /* Academy Header Responsive */
+
+    .academy-top-header {
+        min-height: 78px;
+        padding: 11px 20px 9px;
+    }
+
+    .academy-sir {
+        font-size: 16px;
+    }
+
+    .academy-title {
+        font-size: 24px;
+    }
+
+    .academy-tagline {
+        font-size: 8px;
+    }
+}
+
+
+@media (max-width: 600px) {
+    .details-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .receipt-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .fee-receipt {
+        padding: 25px 20px;
+    }
+}
+
+
+@media (max-width: 500px) {
+
+    .sidebar {
+        width: 86%;
+        max-width: 300px;
+    }
+
+    .page-content {
+        padding: 15px;
+    }
+
+    .dashboard-title {
+        font-size: 24px;
+    }
+
+    .dashboard-filter {
+        flex-direction: column;
+        align-items: stretch;
+        padding: 10px;
+    }
+
+    .month-select {
+        width: 100%;
+    }
+
+    .academy-top-header {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    .academy-title {
+        font-size: 21px;
+    }
+
+    .academy-sir {
+        font-size: 15px;
+    }
+}
+
+
+/* =========================================================
+   PRINT
+========================================================= */
+
+@media print {
+
+    body {
+        background: white !important;
+    }
+
+    .sidebar,
+    .top-header,
+    .receipt-actions,
+    .page-header {
+        display: none !important;
+    }
+
+    .main-area {
+        margin: 0 !important;
+        width: 100% !important;
+    }
+
+    .page-content {
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+
+    .receipt-page {
+        width: 100% !important;
+    }
+
+    .fee-receipt {
+        max-width: 100%;
+        width: 100%;
+        margin: 0;
+        padding: 25px;
+        box-shadow: none;
+        border-radius: 0;
+    }
+
+    .academy-top-header {
+        border-bottom: none !important;
+    }
+
+    @page {
+        size: A4;
+        margin: 10mm;
+    }
+}
+/* =========================================================
+DASHBOARD FEE DEFAULTERS TABLE
+========================================================= */
+
+.dashboard-table-wrapper {
+width: 100%;
+overflow-x: auto;
+}
+
+.dashboard-table {
+width: 100%;
+border-collapse: collapse;
+font-size: 14px;
+}
+
+.dashboard-table thead {
+background: #f8fafc;
+}
+
+.dashboard-table th {
+padding: 15px 20px;
+text-align: left;
+font-size: 11px;
+font-weight: 700;
+text-transform: uppercase;
+letter-spacing: 0.7px;
+color: #64748b;
+border-bottom: 1px solid #e5e7eb;
+}
+
+.dashboard-table td {
+padding: 17px 20px;
+color: #334155;
+border-bottom: 1px solid #eef0f3;
+vertical-align: middle;
+}
+
+.dashboard-table tbody tr {
+transition: background 0.2s ease;
+}
+
+.dashboard-table tbody tr:hover {
+background: #f8fafc;
+}
+
+.dashboard-table tbody tr:last-child td {
+border-bottom: none;
+}
+
+.dashboard-table td strong {
+color: #0f172a;
+font-weight: 600;
+}
+
+/* Pending amount */
+
+.dashboard-table td:last-child strong {
+color: #dc2626;
+font-weight: 700;
+}
+
+/* Student name */
+
+.dashboard-table td:first-child {
+min-width: 220px;
+}
+
+/* Class */
+
+.dashboard-table td:nth-child(2) {
+font-weight: 600;
+color: #475569;
+}
+
+/* Board */
+
+.dashboard-table td:nth-child(3) {
+color: #64748b;
+}
+
+/* Mobile */
+
+@media (max-width: 768px) {
+
+
+.dashboard-table-card {
+    overflow: hidden;
+}
+
+.dashboard-table {
+    min-width: 650px;
+}
+
+.dashboard-table th,
+.dashboard-table td {
+    padding: 13px 15px;
+}
+
+
+}
+.print-action {
+    background: #f3f4f6;
+    color: #374151;
+    border: 1px solid #d1d5db;
+}
+
+.print-action:hover {
+    background: #e5e7eb;
+    color: #111827;
+}
+img {
+  width: 50px;       /* Shrinks the width to a fixed layout size */
+  height: 50px;      /* Shrinks the height to a fixed layout size */
+  
+}
+.receipt-header-header{
+  display: flex;            /* Turns on Flexbox and aligns items horizontally */
+  flex-direction: row;      /* Default setting: items flow left to right */
+  gap: 0px;                /* Adds spacing between your items */
+  /* justify-content: center;  */
+  align-items: center; 
+}
+.receipt-balance{
+    border-top: 1px solid var(--ink);
+    border-bottom: 1px solid var(--ink);
+}
+.thankyouword{
+    font-size: 24px;
+    font-weight: 900;
+}
+.academy-logo-navbar{
+     width: 90px;
+    height: auto;
+    display: block;
+
+}
+.fees-page {
+    --navy-950: #0A1526; --navy-900: #0F1F35; --navy-800: #16304E;
+    --gold-600: #A9812F; --gold-100: #FBF3E1;
+    --surface: #F6F7FA; --surface-raised: #fff; --surface-muted: #FAFBFC;
+    --border: #E4E7EC; --border-strong: #D6DAE1;
+    --text-primary: #101828; --text-secondary: #4B5568; --text-tertiary: #8A93A3;
+    --success-bg: #E7F5EE; --success-text: #146C43; --success-border: #BFE4D2;
+    --info-bg: #EAF1FB; --info-text: #1D4E89; --info-border: #C9DBF2;
+    --shadow-xs: 0 1px 2px rgba(16,24,40,.04);
+    --shadow-sm: 0 2px 6px rgba(16,24,40,.05);
+    --shadow-md: 0 8px 24px rgba(16,24,40,.08);
+    --radius-sm: 7px; --radius-md: 10px; --radius-lg: 14px;
+    --font-display: 'Playfair Display', Georgia, serif;
+    --font-body: 'Inter', -apple-system, 'Segoe UI', Arial, sans-serif;
+
+    font-family: var(--font-body);
+    color: var(--text-primary);
+    background: var(--surface);
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+    padding-left: 28px; padding-right: 28px;
+}
+
+/* ---------- Header ---------- */
+.fees-page h2 {
+    font-family: var(--font-display);
+    font-size: 26px;
+    font-weight: 700 !important;
+    color: var(--text-primary) !important;
+    letter-spacing: -0.2px;
+}
+.fees-page .text-muted { color: var(--text-secondary) !important; }
+.fees-page header p, .fees-page > div:first-child p { font-size: 13.5px; }
+
+/* ---------- Buttons ---------- */
+.fees-page .btn {
+    font-family: var(--font-body);
+    font-size: 13.5px;
+    font-weight: 600;
+    border-radius: var(--radius-sm);
+    padding: 11px 19px !important;
+    box-shadow: var(--shadow-xs) !important;
+    transition: background .2s, transform .2s, box-shadow .2s;
+}
+.fees-page .btn-danger,
+.fees-page .btn-primary {
+    background: var(--navy-950);
+    border-color: var(--navy-950);
+    color: #fff;
+}
+.fees-page .btn-danger:hover,
+.fees-page .btn-primary:hover {
+    background: var(--navy-800);
+    border-color: var(--navy-800);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-sm) !important;
+}
+.fees-page .btn-outline-secondary {
+    background: var(--surface-muted);
+    color: var(--text-secondary);
+    border: 1px solid var(--border-strong);
+}
+.fees-page .btn-outline-secondary:hover {
+    background: #eef0f3;
+    color: var(--text-primary);
+    border-color: var(--border-strong);
+}
+
+/* ---------- Cards ---------- */
+.fees-page .card {
+    background: var(--surface-raised);
+    border: 1px solid var(--border) !important;
+    border-radius: var(--radius-lg) !important;
+    box-shadow: var(--shadow-sm) !important;
+    overflow: hidden;
+}
+.fees-page .row .card { transition: box-shadow .2s, transform .2s; }
+.fees-page .row .card:hover {
+    box-shadow: var(--shadow-md) !important;
+    transform: translateY(-1px);
+}
+.fees-page .card.p-3 { padding: 21px !important; }
+
+/* Metric cards */
+.fees-page .card.p-3 .text-uppercase {
+    font-size: 12.5px;
+    font-weight: 500 !important;
+    text-transform: none !important;
+    letter-spacing: 0;
+    color: var(--text-secondary) !important;
+}
+.fees-page .card.p-3 h3 {
+    font-family: var(--font-display);
+    font-size: 26px;
+    font-weight: 700 !important;
+    color: var(--text-primary) !important;
+    margin-top: 8px !important;
+}
+.fees-page .card.p-3 .badge {
+    width: 42px; height: 42px;
+    padding: 0 !important;
+    display: flex; align-items: center; justify-content: center;
+    border-radius: var(--radius-md) !important;
+    background: var(--gold-100) !important;
+    color: var(--gold-600) !important;
+    font-size: 18px !important;
+}
+
+/* Card headers */
+.fees-page .card-header {
+    background: #fff !important;
+    padding: 22px 24px !important;
+    border-bottom: 1px solid var(--border) !important;
+}
+.fees-page .card-header h6 {
+    font-size: 16.5px;
+    font-weight: 700 !important;
+    color: var(--text-primary) !important;
+    margin-bottom: 4px !important;
+}
+.fees-page .card-header small {
+    font-size: 12.5px;
+    color: var(--text-secondary) !important;
+}
+.fees-page .card-body { padding: 22px 24px; }
+.fees-page .card-footer {
+    background: #fff !important;
+    border-top: 1px solid var(--border) !important;
+}
+
+/* ---------- Form ---------- */
+.fees-page .form-label {
+    font-size: 12px;
+    font-weight: 600 !important;
+    color: var(--text-secondary) !important;
+    margin-bottom: 8px;
+}
+.fees-page .form-control,
+.fees-page .form-select {
+    height: 44px;
+    padding: 0 13px;
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-sm);
+    background-color: var(--surface-raised);
+    color: var(--text-primary);
+    font-size: 13px;
+    font-family: inherit;
+    transition: border-color .2s, box-shadow .2s;
+}
+.fees-page .form-select { padding-right: 36px; }
+.fees-page .form-control::placeholder { color: var(--text-tertiary); }
+.fees-page .form-control:hover,
+.fees-page .form-select:hover { border-color: #9ca3af; }
+.fees-page .form-control:focus,
+.fees-page .form-select:focus {
+    border-color: var(--navy-900);
+    box-shadow: 0 0 0 3px rgba(15,31,53,.09);
+}
+
+/* ---------- Table ---------- */
+.fees-page .table { margin-bottom: 0; }
+.fees-page .table thead,
+.fees-page .table thead th {
+    background: var(--surface-muted) !important;
+    --bs-table-bg: var(--surface-muted);
+}
+.fees-page .table th {
+    padding: 14px 20px;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--text-tertiary);
+    text-transform: uppercase;
+    letter-spacing: .5px;
+    border-bottom: 1px solid var(--border);
+    white-space: nowrap;
+}
+.fees-page .table td {
+    padding: 16px 20px;
+    font-size: 13px;
+    color: var(--text-secondary);
+    border-bottom: 1px solid var(--surface);
+    white-space: nowrap;
+}
+.fees-page .table tbody tr { transition: background .15s; }
+.fees-page .table-hover > tbody > tr:hover > * {
+    --bs-table-accent-bg: var(--surface-muted);
+    background: var(--surface-muted);
+    color: var(--text-secondary);
+}
+.fees-page .table tbody tr:last-child td { border-bottom: none; }
+.fees-page .table .ps-3 { padding-left: 24px !important; }
+.fees-page .table .pe-3 { padding-right: 24px !important; }
+
+/* Student cell */
+.fees-page .table td .fw-bold.text-dark {
+    color: var(--text-primary) !important;
+    font-size: 13px;
+    font-weight: 600 !important;
+}
+.fees-page .table td small {
+    display: block;
+    font-size: 11px;
+    margin-top: 3px;
+    color: var(--text-tertiary) !important;
+}
+.fees-page .table td .fw-semibold.text-muted { color: var(--text-tertiary) !important; }
+
+/* Amount */
+.fees-page .table td .text-success {
+    color: var(--success-text) !important;
+    font-size: 13.5px !important;
+    font-weight: 700 !important;
+}
+.fees-page .table td .fw-medium { font-weight: 500 !important; color: var(--text-primary) !important; }
+
+/* ---------- Badges ---------- */
+.fees-page .table .badge {
+    padding: 5px 10px !important;
+    border-radius: var(--radius-sm);
+    font-size: 11.5px;
+    font-weight: 600;
+    letter-spacing: .2px;
+}
+/* Class badge */
+.fees-page .table .badge.bg-secondary-subtle {
+    background: var(--surface-muted) !important;
+    color: var(--text-secondary) !important;
+    border: 1px solid var(--border);
+}
+/* Student code badge */
+.fees-page .table .badge.bg-light {
+    background: var(--gold-100) !important;
+    color: var(--gold-600) !important;
+    border: 1px solid #EBD9A8 !important;
+    font-size: 10.5px;
+    padding: 3px 8px !important;
+}
+/* Collected by badge */
+.fees-page .table .badge.bg-info-subtle {
+    background: var(--info-bg) !important;
+    color: var(--info-text) !important;
+    border: 1px solid var(--info-border);
+    border-radius: 999px;
+    font-size: 10.5px;
+    font-weight: 700;
+}
+
+/* ---------- Empty state ---------- */
+.fees-page td[colspan] { white-space: normal; padding: 60px 20px !important; }
+.fees-page td[colspan] .bi {
+    width: 55px; height: 55px;
+    margin: 0 auto 15px !important;
+    border-radius: 50%;
+    background: var(--surface-muted);
+    border: 1px solid var(--border);
+    display: flex !important; align-items: center; justify-content: center;
+    font-size: 22px !important;
+    color: var(--text-tertiary);
+}
+
+/* ---------- Pagination ---------- */
+.fees-page .pagination { margin: 0; gap: 4px; }
+.fees-page .page-link {
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm) !important;
+    color: var(--text-secondary);
+    font-size: 13px;
+    font-weight: 500;
+    padding: 7px 12px;
+}
+.fees-page .page-link:hover {
+    background: var(--surface-muted);
+    color: var(--navy-950);
+}
+.fees-page .page-item.active .page-link {
+    background: var(--navy-950);
+    border-color: var(--navy-950);
+    color: #fff;
+}
+.fees-page .page-item.disabled .page-link {
+    background: var(--surface-muted);
+    color: var(--text-tertiary);
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 700px) {
+    .fees-page { padding-left: 14px; padding-right: 14px; }
+    .fees-page .btn-danger { width: 100%; justify-content: center; }
+}
